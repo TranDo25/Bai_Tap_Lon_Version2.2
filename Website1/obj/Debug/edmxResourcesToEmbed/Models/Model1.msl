@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Bai_Tap_Lon_2ModelStoreContainer" CdmEntityContainer="Bai_Tap_Lon_2Entities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.admin">
+        <MappingFragment StoreEntitySet="admins">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.category">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="c_name" ColumnName="c_name" />
+          <ScalarProperty Name="c_avatar" ColumnName="c_avatar" />
+          <ScalarProperty Name="c_total_product" ColumnName="c_total_product" />
+          <ScalarProperty Name="c_brand_id" ColumnName="c_brand_id" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contacts">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.contact">
+        <MappingFragment StoreEntitySet="contacts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="c_name" ColumnName="c_name" />
+          <ScalarProperty Name="c_email" ColumnName="c_email" />
+          <ScalarProperty Name="c_title" ColumnName="c_title" />
+          <ScalarProperty Name="c_content" ColumnName="c_content" />
+          <ScalarProperty Name="c_status" ColumnName="c_status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="images">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.image">
+        <MappingFragment StoreEntitySet="images">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="im_product_id" ColumnName="im_product_id" />
+          <ScalarProperty Name="im_name" ColumnName="im_name" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="or_transaction_id" ColumnName="or_transaction_id" />
+          <ScalarProperty Name="or_product_id" ColumnName="or_product_id" />
+          <ScalarProperty Name="or_user_id" ColumnName="or_user_id" />
+          <ScalarProperty Name="or_quantiy" ColumnName="or_quantiy" />
+          <ScalarProperty Name="or_final_price" ColumnName="or_final_price" />
+          <ScalarProperty Name="or_price_old" ColumnName="or_price_old" />
+          <ScalarProperty Name="or_sale" ColumnName="or_sale" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+          <ScalarProperty Name="pro_category_id" ColumnName="pro_category_id" />
+          <ScalarProperty Name="pro_price" ColumnName="pro_price" />
+          <ScalarProperty Name="pro_brand_id" ColumnName="pro_brand_id" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="pro_quantity" ColumnName="pro_quantity" />
+          <ScalarProperty Name="pro_description" ColumnName="pro_description" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="pro_size" ColumnName="pro_size" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="final_price" ColumnName="final_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sizes">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.size">
+        <MappingFragment StoreEntitySet="sizes">
+          <ScalarProperty Name="id_size" ColumnName="id_size" />
+          <ScalarProperty Name="mo_ta_size" ColumnName="mo_ta_size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="suppliers">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.supplier">
+        <MappingFragment StoreEntitySet="suppliers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactions">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.transaction">
+        <MappingFragment StoreEntitySet="transactions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tr_user_id" ColumnName="tr_user_id" />
+          <ScalarProperty Name="tr_total" ColumnName="tr_total" />
+          <ScalarProperty Name="tr_note" ColumnName="tr_note" />
+          <ScalarProperty Name="tr_address" ColumnName="tr_address" />
+          <ScalarProperty Name="tr_phone" ColumnName="tr_phone" />
+          <ScalarProperty Name="tr_status" ColumnName="tr_status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="total_pay" ColumnName="total_pay" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

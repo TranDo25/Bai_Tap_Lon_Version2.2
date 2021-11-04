@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    /* background: rgb(42, 44, 54); */
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+    /*input setup*/
+    .search-box .input-box {
+        position: relative;
+        background: rgb(255, 255, 255);
+        padding: 10px;
+        border-radius: 30px;
+        width: 0;
+        transition: 0.5s;
+        height: 40px;
+    }
+
+        .search-box .input-box .active {
+            width: 300px;
+        }
+
+        .search-box .input-box input {
+            width: 100%;
+            background: transparent;
+            padding-right: 50px;
+            border: none;
+            outline: none;
+            color: rgb(94, 90, 90);
+            font-size: 17px;
+        }
+
+
+            .search-box .input-box input::placeholder {
+                color: rgb(165, 158, 158);
+            }
+    /*Search-button*/
+    .search-box .search-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgb(233, 179, 147);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0px;
+        box-shadow: 0 0 0 8px rgb(241, 122, 122);
+        cursor: pointer;
+    }
+
+        .search-box .search-button img {
+            width: 22px;
+            height: 22px;
+        }
+
+    .search-box:hover > .input-box {
+        width: 300px;
+    }
+.search-button_icon {
+    background: rgb(53, 157, 158);
+    border: 1px solid rgba(0, 0, 0,0);
+}

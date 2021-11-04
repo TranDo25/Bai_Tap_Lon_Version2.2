@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Website1.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,38 +9,63 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="~/assets/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://use.fontawesome.com/68b112eaae.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
 
+    <style>
+        .button-search {
+            background: rgb(233, 179, 147);
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
     <div class="header">
         <div class="container">
             <div class="navbar">
+
                 <div class="logo">
                     <a href="index.html"><img src="~/assets/images/logo.png" width="125px"></a>
                 </div>
-                <nav>
-                    <ul id="MenuItems">
-                        <li><a href="~/Home/Index">Home</a></li>
-                        <li><a href="~/SanPham/DanhSachSanPham">Products</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="~/User/Contact">Contact</a></li>
-                        <li class="user-icon">
-                            <a href="account.html"><img src="~/assets/images/user.png" width="25px" height="25px"></a>
-                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                            <ul>
-                                <li><a href="l">Login</a></li>
-                                <li><a href="~/User/Register">register</a></li>
-                            </ul>
-                        </li>
-               
-                    </ul>
-                    
-                </nav>
-                <a href="~/User/Cart"><img src="~/assets/images/cart.png" width="30px" height="30px"></a>
-                <img src="~/assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
-            </div>
+                @using (Html.BeginForm("KQTimKiem", "TimKiem"))
+                {
+                    <div class="search-box" style="margin: 0 60px" ;>
+                        <div class="input-box">
+                            <input type="text" name="TuKhoa" placeholder="search something....">
+                        </div>
+                        <div class="search-button">
+                            <button class="button-search" type="submit" color="#000"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    }
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="~/Home/Index">Home</a></li>
+                            <li><a href="~/SanPham/DanhSachSanPham">Products</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="~/User/Contact">Contact</a></li>
+                            <li class="user-icon">
+                                <a href="account.html"><img src="~/assets/images/user.png" width="25px" height="25px"></a>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <ul>
+                                    <li><a href="l">Login</a></li>
+                                    <li><a href="~/User/Register">register</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <a href="~/User/Cart"><img src="~/assets/images/cart.png" width="30px" height="30px"></a>
+                    <img src="~/assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
+
+                </div>
 
         </div>
     </div>
@@ -120,24 +146,35 @@
         }
     </script>
 
-    @*<script>
-            var ProductImg = document.getElementById("ProductImg");
-            var SmallImg = document.getElementsByClassName("small-img");
+    <script>
+        var ProductImg = document.getElementById("ProductImg");
+        var SmallImg = document.getElementsByClassName("small-img");
 
-            SmallImg[0].onclick = function () {
-                ProductImg.src = SmallImg[0].src;
-            }
-            SmallImg[1].onclick = function () {
-                ProductImg.src = SmallImg[1].src;
-            }
-            SmallImg[2].onclick = function () {
-                ProductImg.src = SmallImg[2].src;
-            }
-            SmallImg[3].onclick = function () {
-                ProductImg.src = SmallImg[3].src;
-            }
+        SmallImg[0].onclick = function () {
+            ProductImg.src = SmallImg[0].src;
+        }
+        SmallImg[1].onclick = function () {
+            ProductImg.src = SmallImg[1].src;
+        }
+        SmallImg[2].onclick = function () {
+            ProductImg.src = SmallImg[2].src;
+        }
+        SmallImg[3].onclick = function () {
+            ProductImg.src = SmallImg[3].src;
+        }
 
-        </script>*@
-
+    </script>
+    <script>
+        $('.search-box .input-box input').focus(
+            () => {
+                $('.search-box .input-box').addClass('active')
+            }
+        );
+        $('.search-box .input-box input').blur(
+            () => {
+                $('.search-box .input-box').removeClass('active');
+            }
+        )
+    </script>
 </body>
 </html>
