@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Website1.Models.CartModel>
+@{
+    ViewBag.Title = "Giỏ hàng của bạn";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = $("#productid").val();
+        
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#product-"+model.Id).remove();
+                },
+                error: function () {
+                    alert("Lỗi xóa mặt hàng trong giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div id="form-login-container" class="js-login-form">
+    <div class="login-form">
+        <div class="form-container">
+            <a href="#"><i class="fa fa-times form-close js-close"></i></a>
+            <h2>Login</h2>
+            <form id="LoginForm">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <button type="submit" class="btn">Login</button>
+                <a href="">Forgot Password?</a>
+                <br>
+                <a href="register.html">Haven't have a account? Join us!</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!---------- cart items details ------------>
+
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Size</th>
+            <th>Discount</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="product-@item.Product.id">
+                    <td>
+                        <div class="cart-info">
+                            <img src="~/assets/images/@item.Product.image">
+                            <div>
+                                <p>@item.Product.pro_name</p>
+                                <small>@string.Format("{0:#,0}", item.Product.pro_price) vnđ</small>
+                                <br>
+
+                                <input type="hidden" value="@item.Product.id" id="productid"/>
+                                
+                                <a href="" id="removecart">Remove</a>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>@item.Size</td>
+                    <td>(@item.Product.discount*100) %</td>
+                    <td><input type="number" value="@item.Quantity"></td>
+                    <td>@string.Format("{0:#,0}", (item.Product.discount * item.Quantity))</td>
+                </tr>
+            }
+        }
+            else
+            {
+                <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng!</p>
+            }
+
+
+        @*<tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="~/assets/images/buy-2.jpg">
+                        <div>
+                            <p>Red Printed Tshirt</p>
+                            <small>Price: $75.00</small>
+                            <br>
+                            <a href="">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$50.00</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="~/assets/images/buy-3.jpg">
+                        <div>
+                            <p>Red Printed Tshirt</p>
+                            <small>Price: $50.00</small>
+                            <br>
+                            <a href="">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$60.00</td>
+            </tr>*@
+    </table>
+
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <td>$200.00</td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>$35.00</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>$230.00</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+

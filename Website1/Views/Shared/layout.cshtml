@@ -31,9 +31,9 @@
             <div class="navbar">
 
                 <div class="logo">
-                    <a href="index.html"><img src="~/assets/images/logo.png" width="125px"></a>
+                    <a href="~/Home/Index"><img src="~/assets/images/logo.png" width="125px"></a>
                 </div>
-                @using (Html.BeginForm("KQTimKiem", "TimKiem"))
+                @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
                 {
                     <div class="search-box" style="margin: 0 60px" ;>
                         <div class="input-box">
@@ -43,29 +43,38 @@
                             <button class="button-search" type="submit" color="#000"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
-                    }
-                    <nav>
-                        <ul id="MenuItems">
-                            <li><a href="~/Home/Index">Home</a></li>
-                            <li><a href="~/SanPham/DanhSachSanPham">Products</a></li>
-                            <li><a href="">About</a></li>
-                            <li><a href="~/User/Contact">Contact</a></li>
-                            <li class="user-icon">
-                                <a href="account.html"><img src="~/assets/images/user.png" width="25px" height="25px"></a>
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                <ul>
-                                    <li><a href="l">Login</a></li>
-                                    <li><a href="~/User/Register">register</a></li>
-                                </ul>
-                            </li>
+                }
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="~/Home/Index">Home</a></li>
+                        <li><a href="~/SanPham/DanhSachSanPham">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="~/User/Contact">Contact</a></li>
+                        <li class="user-icon">
+                            <a href="account.html"><img src="~/assets/images/user.png" width="25px" height="25px"></a>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            <ul>
+                                <li><a href="l">Login</a></li>
+                                <li><a href="~/Home/Register">register</a></li>
+                            </ul>
+                        </li>
 
-                        </ul>
+                    </ul>
 
-                    </nav>
-                    <a href="~/User/Cart"><img src="~/assets/images/cart.png" width="30px" height="30px"></a>
-                    <img src="~/assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                </nav>
+                <div class="widget-header"
+
+                        <div class="icon-area">
+                            <a href="~/Cart/Index" class="widget-view">
+                                <img src="~/assets/images/cart.png" width="30px" height="30px">
+                            </a>
+                            <span class="notify" id="CartCount">@Session["count"]</span>
+                        </div>
 
                 </div>
+                <img src="~/assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
+
+            </div>
 
         </div>
     </div>

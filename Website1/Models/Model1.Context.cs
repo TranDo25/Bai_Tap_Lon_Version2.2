@@ -13,10 +13,10 @@ namespace Website1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Bai_Tap_Lon_2Entities : DbContext
+    public partial class Bai_Tap_Lon_2Entities3 : DbContext
     {
-        public Bai_Tap_Lon_2Entities()
-            : base("name=Bai_Tap_Lon_2Entities")
+        public Bai_Tap_Lon_2Entities3()
+            : base("name=Bai_Tap_Lon_2Entities3")
         {
         }
     
@@ -25,15 +25,16 @@ namespace Website1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<admin> admins { get; set; }
-        public virtual DbSet<category> categories { get; set; }
-        public virtual DbSet<contact> contacts { get; set; }
-        public virtual DbSet<image> images { get; set; }
-        public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<size> sizes { get; set; }
-        public virtual DbSet<supplier> suppliers { get; set; }
-        public virtual DbSet<transaction> transactions { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<admins> admins { get; set; }
+        public virtual DbSet<brands> brands { get; set; }
+        public virtual DbSet<categories> categories { get; set; }
+        public virtual DbSet<contacts> contacts { get; set; }
+        public virtual DbSet<images> images { get; set; }
+        public virtual DbSet<orders> orders { get; set; }
+        public virtual DbSet<products> products { get; set; }
+        public virtual DbSet<sizes> sizes { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<transactions> transactions { get; set; }
+        public virtual DbSet<users> users { get; set; }
     }
 }

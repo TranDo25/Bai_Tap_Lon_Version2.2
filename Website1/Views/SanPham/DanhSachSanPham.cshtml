@@ -1,7 +1,7 @@
 ﻿@using Website1.Models
 @using PagedList.Mvc;
 
-@model PagedList.IPagedList<product>
+@model PagedList.IPagedList<products>
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/layout.cshtml";
@@ -10,14 +10,31 @@
 <div class="small-container">
 
     <div class="row row-2">
-        <h2>All Products</h2>
-        <select>
-            <option>Default Sorting</option>
-            <option>Sorted by price</option>
-            <option>Sorted by popularity</option>
-            <option>Sorted by rating</option>
-            <option>Sorted by sale</option>
-        </select>
+        <h2>Tất cả sản phẩm</h2>
+        <th>
+            @Html.ActionLink("sắp xếp theo giá", "DanhSachSanPham", new { sortOrder = ViewBag.GiaSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("sắp xếp theo tên", "DanhSachSanPham", new { sortOrder = ViewBag.TenSortParm })
+        </th>
+       
+    <select>
+        @*<option>
+            <th>
+                @Html.ActionLink("sắp xếp theo giá", "DanhSachSanPham", new { sortOrder = ViewBag.GiaSortParm })
+            </th>
+        </option>
+
+        <option>
+            <th>
+                @Html.ActionLink("sắp xếp theo mã", "DanhSachSanPham", new { sortOrder = ViewBag.MaSortParm })
+                </th>
+        </option>*@
+
+        <option>Sorted by popularity</option>
+        <option>Sorted by rating</option>
+        <option>Sorted by sale</option>
+    </select>
     </div>
    
         <div class="row">

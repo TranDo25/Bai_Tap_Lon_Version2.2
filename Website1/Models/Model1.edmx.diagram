@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a955bfcbbb31448a894e5492aa1a6981" Name="Diagram1">
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.admin" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.category" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.contact" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.image" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.order" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.size" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.supplier" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.transaction" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.user" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="1795d487d25a4aacb2e18bec41da71a3" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.admins" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.brands" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.categories" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.contacts" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.images" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.orders" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.products" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.sizes" Width="1.5" PointX="4.875" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.sysdiagrams" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.transactions" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bai_Tap_Lon_2Model.users" Width="1.5" PointX="8.625" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="Bai_Tap_Lon_2Model.FK__orders__or_produ__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="Bai_Tap_Lon_2Model.FK__orders__or_trans__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="Bai_Tap_Lon_2Model.fk_sizes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

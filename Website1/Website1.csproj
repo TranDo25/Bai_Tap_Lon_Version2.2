@@ -463,6 +463,15 @@
     <Content Include="assets\fonts\themify-icons\SVG\zoom-in.svg" />
     <Content Include="assets\fonts\themify-icons\SVG\zoom-out.svg" />
     <Content Include="assets\fonts\themify-icons\themify-icons.css" />
+    <Content Include="assets\images\ADIDAS COPA SENSE.3 TF.jpg" />
+    <Content Include="assets\images\ADIDAS PREDATOR 20.3 L TF.jpg" />
+    <Content Include="assets\images\ADIDAS PREDATOR 20.3 TF.jpg" />
+    <Content Include="assets\images\ADIDAS PREDATOR FREAK.3 L TF.jpg" />
+    <Content Include="assets\images\ADIDAS PREDATOR FREAK.3 TF.jpg" />
+    <Content Include="assets\images\ADIDAS X SPEEDFLOW.3 TF.jpg" />
+    <Content Include="assets\images\ADIDAS XGHOSTED.3 TF.jpg" />
+    <Content Include="assets\images\ADIDAS XGHOSTED.3 TSUBASA.jpg" />
+    <Content Include="assets\images\ADIDAS XSPEEDFLOW.3 TF.jpg" />
     <Content Include="assets\images\alphamagma.jpg" />
     <Content Include="assets\images\app-store.png" />
     <Content Include="assets\images\buy-1.jpg" />
@@ -502,6 +511,8 @@
     <Content Include="assets\images\product-7.jpg" />
     <Content Include="assets\images\product-8.jpg" />
     <Content Include="assets\images\product-9.jpg" />
+    <Content Include="assets\images\PUMA FUTURE 19.3 NETFIT.jpg" />
+    <Content Include="assets\images\PUMA _EVO POWER_4.3_TT - ĐEN-XB.jpg" />
     <Content Include="assets\images\pureboost21.jpg" />
     <Content Include="assets\images\responsesuper2_0.jpg" />
     <Content Include="assets\images\runfalcon2_0.jpg" />
@@ -515,6 +526,7 @@
     <Content Include="assets\images\user-2.png" />
     <Content Include="assets\images\user-3.png" />
     <Content Include="assets\images\user.png" />
+    <Content Include="assets\images\X GHOSTED.1 TF.jpg" />
     <Content Include="assets\images\yeezy380.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -557,23 +569,29 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddAndEditAndRemoveController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\admin.cs">
+    <Compile Include="Models\admins.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\category.cs">
+    <Compile Include="Models\brands.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\contact.cs">
+    <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\categories.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\image.cs">
+    <Compile Include="Models\contacts.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\images.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -591,23 +609,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\order.cs">
+    <Compile Include="Models\orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\product.cs">
+    <Compile Include="Models\products.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPhamModel.cs" />
-    <Compile Include="Models\size.cs">
+    <Compile Include="Models\sizes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\supplier.cs">
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\transaction.cs">
+    <Compile Include="Models\transactions.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\user.cs">
+    <Compile Include="Models\users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -655,7 +673,6 @@
     <Content Include="Views\Shared\layout.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.esm.min.js.map" />
@@ -670,11 +687,13 @@
     <Content Include="Views\SanPham\DanhSachSanPham.cshtml" />
     <Content Include="Views\User\Contact.cshtml" />
     <Content Include="Views\User\Cart.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\CheckOut.cshtml" />
     <Content Include="Views\SanPham\ChiTietSanPham.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
+    <Content Include="Views\ThanhToan\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

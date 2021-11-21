@@ -1,18 +1,19 @@
 ﻿
 @using Website1.Models;
 @using PagedList.Mvc;
-@model PagedList.IPagedList<product>
+@model PagedList.IPagedList<products>
 @*@model List<Website1.Models.product>*@
-@model IEnumerable<product>
+@*@model IEnumerable<product>*@
 @{
     ViewBag.Title = "KQTimKiem";
     Layout = "~/Views/Shared/layout.cshtml";
+    String tuKhoaTimKiem = ViewBag.TuKhoa;
 }
 
 <div class="small-container">
 
     <div class="row row-2">
-        <h2>All Products</h2>
+        <h2>kết quả tìm kiếm với từ khóa " @tuKhoaTimKiem" :</h2>
         <select>
             <option>Default Sorting</option>
             <option>Sorted by price</option>
@@ -50,7 +51,7 @@
 
     <div class="page-btn">
         Trang @(Model.PageCount<Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
-        <span>@Html.PagedListPager(Model, page => Url.Action("DanhSachSanPham", new { page = page, @TuKhoa = ViewBag.TuKhoa}))</span>
+        <span>@Html.PagedListPager(Model, page => Url.Action("KQTimKiem", new { page = page, @TuKhoa = ViewBag.TuKhoa}))</span>
         @*<span>&#8594</span>*@
     </div>
 </div>

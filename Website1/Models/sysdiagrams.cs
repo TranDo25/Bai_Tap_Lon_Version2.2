@@ -12,14 +12,12 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class category
+    public partial class sysdiagrams
     {
-        public int id { get; set; }
-        public string c_name { get; set; }
-        public string c_avatar { get; set; }
-        public Nullable<int> c_total_product { get; set; }
-        public Nullable<int> c_brand_id { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

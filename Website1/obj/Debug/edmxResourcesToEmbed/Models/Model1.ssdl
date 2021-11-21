@@ -14,6 +14,13 @@
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
   </EntityType>
+  <EntityType Name="brands">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="categories">
     <Key>
       <PropertyRef Name="id" />
@@ -45,6 +52,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="url" Type="nvarchar(max)" />
     <Property Name="im_product_id" Type="int" />
     <Property Name="im_name" Type="varchar" MaxLength="191" />
     <Property Name="created_at" Type="smalldatetime" />
@@ -57,11 +65,13 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="or_transaction_id" Type="int" />
     <Property Name="or_product_id" Type="int" />
+    <Property Name="or_size_M" Type="int" />
+    <Property Name="or_size_L" Type="int" />
+    <Property Name="or_size_S" Type="int" />
     <Property Name="or_user_id" Type="int" />
-    <Property Name="or_quantiy" Type="tinyint" />
     <Property Name="or_final_price" Type="int" />
     <Property Name="or_price_old" Type="int" />
-    <Property Name="or_sale" Type="tinyint" />
+    <Property Name="or_sale" Type="float" />
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
   </EntityType>
@@ -70,18 +80,22 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pro_author_id" Type="int" />
     <Property Name="pro_name" Type="nvarchar" MaxLength="191" />
     <Property Name="pro_category_id" Type="int" />
-    <Property Name="pro_price" Type="money" />
+    <Property Name="pro_price" Type="int" />
     <Property Name="pro_brand_id" Type="int" />
+    <Property Name="pro_size_L" Type="int" />
+    <Property Name="pro_size_M" Type="int" />
+    <Property Name="pro_size_S" Type="int" />
     <Property Name="discount" Type="float" />
-    <Property Name="pro_quantity" Type="tinyint" />
-    <Property Name="pro_description" Type="nvarchar" MaxLength="191" />
+    <Property Name="pro_quantity" Type="int" />
+    <Property Name="pro_description" Type="nvarchar(max)" />
     <Property Name="created_at" Type="smalldatetime" />
-    <Property Name="pro_size" Type="nvarchar" MaxLength="3" />
     <Property Name="updated_at" Type="smalldatetime" />
     <Property Name="image" Type="text" />
-    <Property Name="final_price" Type="float" StoreGeneratedPattern="Computed" />
+    <Property Name="final_price" Type="float" />
+    <Property Name="pro_avatar" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sizes">
     <Key>
@@ -90,12 +104,15 @@
     <Property Name="id_size" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="mo_ta_size" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="suppliers">
+  <EntityType Name="sysdiagrams">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="transactions">
     <Key>
@@ -118,11 +135,9 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="phone" Type="char" MaxLength="191" />
-    <Property Name="active" Type="tinyint" />
     <Property Name="password" Type="varchar" MaxLength="191" />
     <Property Name="name" Type="varchar" MaxLength="191" />
     <Property Name="email" Type="varchar" MaxLength="191" Nullable="false" />
-    <Property Name="total_pay" Type="int" />
     <Property Name="address" Type="varchar" MaxLength="191" />
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
@@ -157,27 +172,16 @@ warning 6035: The relationship 'FK__orders__or_user___4316F928' has columns that
   <!--Errors Found During Generation:
 warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__transacti__tr_us__398D8EEE" />-->
-  <Association Name="fk_sizes">
-    <End Role="sizes" Type="Self.sizes" Multiplicity="0..1" />
-    <End Role="products" Type="Self.products" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="sizes">
-        <PropertyRef Name="id_size" />
-      </Principal>
-      <Dependent Role="products">
-        <PropertyRef Name="pro_size" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Bai_Tap_Lon_2ModelStoreContainer">
     <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="contacts" EntityType="Self.contacts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="images" EntityType="Self.images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sizes" EntityType="Self.sizes" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="transactions" EntityType="Self.transactions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__orders__or_produ__44FF419A" Association="Self.FK__orders__or_produ__44FF419A">
@@ -187,10 +191,6 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
     <AssociationSet Name="FK__orders__or_trans__440B1D61" Association="Self.FK__orders__or_trans__440B1D61">
       <End Role="transactions" EntitySet="transactions" />
       <End Role="orders" EntitySet="orders" />
-    </AssociationSet>
-    <AssociationSet Name="fk_sizes" Association="Self.fk_sizes">
-      <End Role="sizes" EntitySet="sizes" />
-      <End Role="products" EntitySet="products" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

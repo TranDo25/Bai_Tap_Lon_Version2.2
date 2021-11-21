@@ -12,30 +12,25 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class product
+    public partial class transactions
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public product()
+        public transactions()
         {
-            this.orders = new HashSet<order>();
+            this.orders = new HashSet<orders>();
         }
     
         public int id { get; set; }
-        public string pro_name { get; set; }
-        public Nullable<int> pro_category_id { get; set; }
-        public Nullable<decimal> pro_price { get; set; }
-        public Nullable<int> pro_brand_id { get; set; }
-        public Nullable<double> discount { get; set; }
-        public Nullable<byte> pro_quantity { get; set; }
-        public string pro_description { get; set; }
+        public Nullable<int> tr_user_id { get; set; }
+        public Nullable<int> tr_total { get; set; }
+        public string tr_note { get; set; }
+        public string tr_address { get; set; }
+        public string tr_phone { get; set; }
+        public Nullable<byte> tr_status { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
-        public string pro_size { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
-        public string image { get; set; }
-        public Nullable<double> final_price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> orders { get; set; }
-        public virtual size size { get; set; }
+        public virtual ICollection<orders> orders { get; set; }
     }
 }

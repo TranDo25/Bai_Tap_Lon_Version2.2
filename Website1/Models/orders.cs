@@ -12,15 +12,22 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class admin
+    public partial class orders
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string avatar { get; set; }
-        public string password { get; set; }
+        public Nullable<int> or_transaction_id { get; set; }
+        public Nullable<int> or_product_id { get; set; }
+        public Nullable<int> or_size_M { get; set; }
+        public Nullable<int> or_size_L { get; set; }
+        public Nullable<int> or_size_S { get; set; }
+        public Nullable<int> or_user_id { get; set; }
+        public Nullable<int> or_final_price { get; set; }
+        public Nullable<int> or_price_old { get; set; }
+        public Nullable<double> or_sale { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
+    
+        public virtual products products { get; set; }
+        public virtual transactions transactions { get; set; }
     }
 }

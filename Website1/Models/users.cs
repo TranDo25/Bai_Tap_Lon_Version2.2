@@ -12,20 +12,15 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class order
+    public partial class users
     {
         public int id { get; set; }
-        public Nullable<int> or_transaction_id { get; set; }
-        public Nullable<int> or_product_id { get; set; }
-        public Nullable<int> or_user_id { get; set; }
-        public Nullable<byte> or_quantiy { get; set; }
-        public Nullable<int> or_final_price { get; set; }
-        public Nullable<int> or_price_old { get; set; }
-        public Nullable<byte> or_sale { get; set; }
+        public string phone { get; set; }
+        public string password { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
-    
-        public virtual product product { get; set; }
-        public virtual transaction transaction { get; set; }
     }
 }

@@ -1,12 +1,42 @@
-﻿@{
+﻿@model Website1.Models.products
+@{
     ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/layout.cshtml";
-    int id = ViewBag.id;
-    var SanPham = new Website1.Models.SanPhamModel().ChiTietThongTin(id);
+
+    
+ 
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-@if (SanPham == null)
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            model.Size = $("#ipSize").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+@if (Model == null)
 {
     <h1>Sản phẩm không tồn tại</h1>
 }
@@ -15,7 +45,7 @@ else
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="~/assets/images/gallery-1.jpg" width="100%" id="ProductImg">
+                <img src="~/assets/images/@Model.image" width="100%" id="ProductImg">
 
                 <div class="small-img-row">
                     <div class="small-img-col">
@@ -34,22 +64,54 @@ else
 
             </div>
             <div class="col-2">
-                <p>Home / T-Shirt</p>
-                <h1>@SanPham.TenSanPham</h1>
-                <h4>@string.Format("{0:#,0}", SanPham.GiaTien) vnđ</h4>
-                <select>
-                    <option>Select Size</option>
+                <p>Home / Shoes</p>
+                <h1>@Model.pro_name</h1>
+                <h4>@string.Format("{0:#,0}", Model.final_price) vnđ</h4>
+                @*<h4>@Model.pro_size</h4>*@
+
+                @*<select>
+                    <option>Size</option>
                     <option>XXL</option>
                     <option>XL</option>
                     <option>L</option>
                     <option>M</option>
                     <option>S</option>
-                </select>
-                <input type="number" value="1">
-                <a href="~/User/Cart" class="btn">Add To Cart</a>
+                </select>*@
+                @*<input type="number" value="1">
+        <a href="~/User/Cart" class="btn">Add To Cart</a>*@
+                <div class="form-row  mt-4">
+                    <div class="form-group col-md flex-grow-0">
+                        <div class="input-group mb-3 input-spinner">
+                            @*<input type="text" list="ipSize" class="form-control"  name="" />
+        <datalist id="ipSize">
+            <option value="XXL">
+            <option value="XL">
+            <option value="L">
+            <option value="M">
+            <option value="S">
+
+        </datalist>*@
+                            <select name="bookName" id="ipSize" class="form-control">
+                                <option value="XXL">XXL</option>
+                                <option value="XL">XL</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                            </select>
+
+                            <input type="text" id="ipQuantity" class="form-control" value="1">
+                        </div>
+                    </div> <!-- col.// -->
+                    <div class="form-group col-md">
+                        <a href="#" id="addtocart" class="btn  btn-primary">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text" h>Thêm vào giỏ hàng</span>
+                        </a>
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
                 <h3>Chi tiết sản phẩm<i class="fa fa-indent"></i></h3>
                 <br>
-                <p>"@SanPham.moTa"</p>
+                <p>"@Model.pro_description"</p>
             </div>
         </div>
     </div>

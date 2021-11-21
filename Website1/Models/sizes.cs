@@ -12,18 +12,9 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class size
+    public partial class sizes
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public size()
-        {
-            this.products = new HashSet<product>();
-        }
-    
         public string id_size { get; set; }
         public string mo_ta_size { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product> products { get; set; }
     }
 }

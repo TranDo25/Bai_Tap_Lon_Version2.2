@@ -12,7 +12,7 @@ namespace Website1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class contact
+    public partial class contacts
     {
         public long id { get; set; }
         public string c_name { get; set; }

@@ -135,3 +135,7 @@ C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_v
 C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\PagedList.Mvc.dll
 C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\PagedList.xml
 C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\PagedList.Mvc.xml
+C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Tran Xuan Do\OneDrive - ptit.edu.vn\HUONG_DOI_TUONG\back_end_Vinh\BTL_version1.1-main1\Website1\bin\roslyn\System.ValueTuple.dll

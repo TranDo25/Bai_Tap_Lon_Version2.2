@@ -19,6 +19,13 @@
           <Property Name="created_at" Type="smalldatetime" />
           <Property Name="updated_at" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="id" />
@@ -50,6 +57,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" />
           <Property Name="im_product_id" Type="int" />
           <Property Name="im_name" Type="varchar" MaxLength="191" />
           <Property Name="created_at" Type="smalldatetime" />
@@ -62,11 +70,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="or_transaction_id" Type="int" />
           <Property Name="or_product_id" Type="int" />
+          <Property Name="or_size_M" Type="int" />
+          <Property Name="or_size_L" Type="int" />
+          <Property Name="or_size_S" Type="int" />
           <Property Name="or_user_id" Type="int" />
-          <Property Name="or_quantiy" Type="tinyint" />
           <Property Name="or_final_price" Type="int" />
           <Property Name="or_price_old" Type="int" />
-          <Property Name="or_sale" Type="tinyint" />
+          <Property Name="or_sale" Type="float" />
           <Property Name="created_at" Type="smalldatetime" />
           <Property Name="updated_at" Type="smalldatetime" />
         </EntityType>
@@ -75,18 +85,22 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pro_author_id" Type="int" />
           <Property Name="pro_name" Type="nvarchar" MaxLength="191" />
           <Property Name="pro_category_id" Type="int" />
-          <Property Name="pro_price" Type="money" />
+          <Property Name="pro_price" Type="int" />
           <Property Name="pro_brand_id" Type="int" />
+          <Property Name="pro_size_L" Type="int" />
+          <Property Name="pro_size_M" Type="int" />
+          <Property Name="pro_size_S" Type="int" />
           <Property Name="discount" Type="float" />
-          <Property Name="pro_quantity" Type="tinyint" />
-          <Property Name="pro_description" Type="nvarchar" MaxLength="191" />
+          <Property Name="pro_quantity" Type="int" />
+          <Property Name="pro_description" Type="nvarchar(max)" />
           <Property Name="created_at" Type="smalldatetime" />
-          <Property Name="pro_size" Type="nvarchar" MaxLength="3" />
           <Property Name="updated_at" Type="smalldatetime" />
           <Property Name="image" Type="text" />
-          <Property Name="final_price" Type="float" StoreGeneratedPattern="Computed" />
+          <Property Name="final_price" Type="float" />
+          <Property Name="pro_avatar" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sizes">
           <Key>
@@ -95,12 +109,15 @@
           <Property Name="id_size" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="mo_ta_size" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="suppliers">
+        <EntityType Name="sysdiagrams">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="transactions">
           <Key>
@@ -123,11 +140,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="phone" Type="char" MaxLength="191" />
-          <Property Name="active" Type="tinyint" />
           <Property Name="password" Type="varchar" MaxLength="191" />
           <Property Name="name" Type="varchar" MaxLength="191" />
           <Property Name="email" Type="varchar" MaxLength="191" Nullable="false" />
-          <Property Name="total_pay" Type="int" />
           <Property Name="address" Type="varchar" MaxLength="191" />
           <Property Name="created_at" Type="smalldatetime" />
           <Property Name="updated_at" Type="smalldatetime" />
@@ -162,27 +177,16 @@ warning 6035: The relationship 'FK__orders__or_user___4316F928' has columns that
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__transacti__tr_us__398D8EEE" />-->
-        <Association Name="fk_sizes">
-          <End Role="sizes" Type="Self.sizes" Multiplicity="0..1" />
-          <End Role="products" Type="Self.products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sizes">
-              <PropertyRef Name="id_size" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="pro_size" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Bai_Tap_Lon_2ModelStoreContainer">
           <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contacts" EntityType="Self.contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="images" EntityType="Self.images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sizes" EntityType="Self.sizes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transactions" EntityType="Self.transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__orders__or_produ__44FF419A" Association="Self.FK__orders__or_produ__44FF419A">
@@ -193,17 +197,13 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             <End Role="transactions" EntitySet="transactions" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="fk_sizes" Association="Self.fk_sizes">
-            <End Role="sizes" EntitySet="sizes" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Bai_Tap_Lon_2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="admin">
+        <EntityType Name="admins">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="email" />
@@ -217,7 +217,14 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="category">
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="categories">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="c_name" />
@@ -230,7 +237,7 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="contact">
+        <EntityType Name="contacts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -243,69 +250,77 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="image">
+        <EntityType Name="images">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="im_product_id" Type="Int32" />
           <Property Name="im_name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="order">
+        <EntityType Name="orders">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="or_transaction_id" Type="Int32" />
           <Property Name="or_product_id" Type="Int32" />
+          <Property Name="or_size_M" Type="Int32" />
+          <Property Name="or_size_L" Type="Int32" />
+          <Property Name="or_size_S" Type="Int32" />
           <Property Name="or_user_id" Type="Int32" />
-          <Property Name="or_quantiy" Type="Byte" />
           <Property Name="or_final_price" Type="Int32" />
           <Property Name="or_price_old" Type="Int32" />
-          <Property Name="or_sale" Type="Byte" />
+          <Property Name="or_sale" Type="Double" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="product" Relationship="Self.FK__orders__or_produ__44FF419A" FromRole="orders" ToRole="products" />
-          <NavigationProperty Name="transaction" Relationship="Self.FK__orders__or_trans__440B1D61" FromRole="orders" ToRole="transactions" />
+          <NavigationProperty Name="products" Relationship="Self.FK__orders__or_produ__44FF419A" FromRole="orders" ToRole="products" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK__orders__or_trans__440B1D61" FromRole="orders" ToRole="transactions" />
         </EntityType>
-        <EntityType Name="product">
+        <EntityType Name="products">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pro_author_id" Type="Int32" />
           <Property Name="pro_name" Type="String" MaxLength="191" FixedLength="false" Unicode="true" />
           <Property Name="pro_category_id" Type="Int32" />
-          <Property Name="pro_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="pro_price" Type="Int32" />
           <Property Name="pro_brand_id" Type="Int32" />
+          <Property Name="pro_size_L" Type="Int32" />
+          <Property Name="pro_size_M" Type="Int32" />
+          <Property Name="pro_size_S" Type="Int32" />
           <Property Name="discount" Type="Double" />
-          <Property Name="pro_quantity" Type="Byte" />
-          <Property Name="pro_description" Type="String" MaxLength="191" FixedLength="false" Unicode="true" />
+          <Property Name="pro_quantity" Type="Int32" />
+          <Property Name="pro_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
-          <Property Name="pro_size" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="final_price" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="final_price" Type="Double" />
+          <Property Name="pro_avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="orders" Relationship="Self.FK__orders__or_produ__44FF419A" FromRole="products" ToRole="orders" />
-          <NavigationProperty Name="size" Relationship="Self.fk_sizes" FromRole="products" ToRole="sizes" />
         </EntityType>
-        <EntityType Name="size">
+        <EntityType Name="sizes">
           <Key>
             <PropertyRef Name="id_size" />
           </Key>
           <Property Name="id_size" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="mo_ta_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="products" Relationship="Self.fk_sizes" FromRole="sizes" ToRole="products" />
         </EntityType>
-        <EntityType Name="supplier">
+        <EntityType Name="sysdiagrams">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="transaction">
+        <EntityType Name="transactions">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -320,25 +335,23 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
           <Property Name="updated_at" Type="DateTime" Precision="0" />
           <NavigationProperty Name="orders" Relationship="Self.FK__orders__or_trans__440B1D61" FromRole="transactions" ToRole="orders" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="email" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="phone" Type="String" MaxLength="191" FixedLength="true" Unicode="false" />
-          <Property Name="active" Type="Byte" />
           <Property Name="password" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="total_pay" Type="Int32" />
           <Property Name="address" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK__orders__or_produ__44FF419A">
-          <End Role="products" Type="Self.product" Multiplicity="0..1" />
-          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="products">
               <PropertyRef Name="id" />
@@ -349,8 +362,8 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__orders__or_trans__440B1D61">
-          <End Role="transactions" Type="Self.transaction" Multiplicity="0..1" />
-          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <End Role="transactions" Type="Self.transactions" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="transactions">
               <PropertyRef Name="id" />
@@ -360,29 +373,18 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_sizes">
-          <End Role="sizes" Type="Self.size" Multiplicity="0..1" />
-          <End Role="products" Type="Self.product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sizes">
-              <PropertyRef Name="id_size" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="pro_size" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Bai_Tap_Lon_2Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="admins" EntityType="Self.admin" />
-          <EntitySet Name="categories" EntityType="Self.category" />
-          <EntitySet Name="contacts" EntityType="Self.contact" />
-          <EntitySet Name="images" EntityType="Self.image" />
-          <EntitySet Name="orders" EntityType="Self.order" />
-          <EntitySet Name="products" EntityType="Self.product" />
-          <EntitySet Name="sizes" EntityType="Self.size" />
-          <EntitySet Name="suppliers" EntityType="Self.supplier" />
-          <EntitySet Name="transactions" EntityType="Self.transaction" />
-          <EntitySet Name="users" EntityType="Self.user" />
+        <EntityContainer Name="Bai_Tap_Lon_2Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admins" />
+          <EntitySet Name="brands" EntityType="Self.brands" />
+          <EntitySet Name="categories" EntityType="Self.categories" />
+          <EntitySet Name="contacts" EntityType="Self.contacts" />
+          <EntitySet Name="images" EntityType="Self.images" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="sizes" EntityType="Self.sizes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="transactions" EntityType="Self.transactions" />
+          <EntitySet Name="users" EntityType="Self.users" />
           <AssociationSet Name="FK__orders__or_produ__44FF419A" Association="Self.FK__orders__or_produ__44FF419A">
             <End Role="products" EntitySet="products" />
             <End Role="orders" EntitySet="orders" />
@@ -391,19 +393,15 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             <End Role="transactions" EntitySet="transactions" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="fk_sizes" Association="Self.fk_sizes">
-            <End Role="sizes" EntitySet="sizes" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Bai_Tap_Lon_2ModelStoreContainer" CdmEntityContainer="Bai_Tap_Lon_2Entities">
+        <EntityContainerMapping StorageEntityContainer="Bai_Tap_Lon_2ModelStoreContainer" CdmEntityContainer="Bai_Tap_Lon_2Entities3">
           <EntitySetMapping Name="admins">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.admin">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.admins">
               <MappingFragment StoreEntitySet="admins">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -416,8 +414,16 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.brands">
+              <MappingFragment StoreEntitySet="brands">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="categories">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.category">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.categories">
               <MappingFragment StoreEntitySet="categories">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="c_name" ColumnName="c_name" />
@@ -430,7 +436,7 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="contacts">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.contact">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.contacts">
               <MappingFragment StoreEntitySet="contacts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="c_name" ColumnName="c_name" />
@@ -444,9 +450,10 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="images">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.image">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.images">
               <MappingFragment StoreEntitySet="images">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="im_product_id" ColumnName="im_product_id" />
                 <ScalarProperty Name="im_name" ColumnName="im_name" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
@@ -455,13 +462,15 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.order">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.orders">
               <MappingFragment StoreEntitySet="orders">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="or_transaction_id" ColumnName="or_transaction_id" />
                 <ScalarProperty Name="or_product_id" ColumnName="or_product_id" />
+                <ScalarProperty Name="or_size_M" ColumnName="or_size_M" />
+                <ScalarProperty Name="or_size_L" ColumnName="or_size_L" />
+                <ScalarProperty Name="or_size_S" ColumnName="or_size_S" />
                 <ScalarProperty Name="or_user_id" ColumnName="or_user_id" />
-                <ScalarProperty Name="or_quantiy" ColumnName="or_quantiy" />
                 <ScalarProperty Name="or_final_price" ColumnName="or_final_price" />
                 <ScalarProperty Name="or_price_old" ColumnName="or_price_old" />
                 <ScalarProperty Name="or_sale" ColumnName="or_sale" />
@@ -471,42 +480,49 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.product">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.products">
               <MappingFragment StoreEntitySet="products">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pro_author_id" ColumnName="pro_author_id" />
                 <ScalarProperty Name="pro_name" ColumnName="pro_name" />
                 <ScalarProperty Name="pro_category_id" ColumnName="pro_category_id" />
                 <ScalarProperty Name="pro_price" ColumnName="pro_price" />
                 <ScalarProperty Name="pro_brand_id" ColumnName="pro_brand_id" />
+                <ScalarProperty Name="pro_size_L" ColumnName="pro_size_L" />
+                <ScalarProperty Name="pro_size_M" ColumnName="pro_size_M" />
+                <ScalarProperty Name="pro_size_S" ColumnName="pro_size_S" />
                 <ScalarProperty Name="discount" ColumnName="discount" />
                 <ScalarProperty Name="pro_quantity" ColumnName="pro_quantity" />
                 <ScalarProperty Name="pro_description" ColumnName="pro_description" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="pro_size" ColumnName="pro_size" />
                 <ScalarProperty Name="updated_at" ColumnName="updated_at" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="final_price" ColumnName="final_price" />
+                <ScalarProperty Name="pro_avatar" ColumnName="pro_avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sizes">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.size">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.sizes">
               <MappingFragment StoreEntitySet="sizes">
                 <ScalarProperty Name="id_size" ColumnName="id_size" />
                 <ScalarProperty Name="mo_ta_size" ColumnName="mo_ta_size" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="suppliers">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.supplier">
-              <MappingFragment StoreEntitySet="suppliers">
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="transactions">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.transaction">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.transactions">
               <MappingFragment StoreEntitySet="transactions">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tr_user_id" ColumnName="tr_user_id" />
@@ -521,15 +537,13 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.user">
+            <EntityTypeMapping TypeName="Bai_Tap_Lon_2Model.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="total_pay" ColumnName="total_pay" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="updated_at" ColumnName="updated_at" />
@@ -550,7 +564,7 @@ warning 6035: The relationship 'FK__transacti__tr_us__398D8EEE' has columns that
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
