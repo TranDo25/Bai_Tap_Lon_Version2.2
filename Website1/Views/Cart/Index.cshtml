@@ -2,34 +2,11 @@
 @{
     ViewBag.Title = "Giỏ hàng của bạn";
     Layout = "~/Views/Shared/layout.cshtml";
+    var Total_Price = 0;
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("#removecart").click(function () {
-            var model = {};
-            //lấy id sản phẩm
-            model.Id = $("#productid").val();
-        
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Remove", "Cart")',
-                data:  JSON.stringify(model) ,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    $('#CartCount').text(@Session["count"] - 1);
-                    $("#product-"+model.Id).remove();
-                },
-                error: function () {
-                    alert("Lỗi xóa mặt hàng trong giỏ hàng!");
-                }
-            });
-            return false;
-        });
-    });
-</script>
+
 <div id="form-login-container" class="js-login-form">
     <div class="login-form">
         <div class="form-container">
@@ -50,6 +27,7 @@
 <!---------- cart items details ------------>
 
 <div class="small-container cart-page">
+
     <table>
         <tr>
             <th>Sản phẩm</th>
@@ -65,30 +43,32 @@
                 <tr id="product-@item.Product.id">
                     <td>
                         <div class="cart-info">
-                            <img src="~/assets/images/@item.Product.image">
+                            <img src="~/assets/images/@item.Product.pro_avatar">
                             <div>
                                 <p>@item.Product.pro_name</p>
                                 <small>@string.Format("{0:#,0}", item.Product.pro_price) vnđ</small>
                                 <br>
 
-                                <input type="hidden" value="@item.Product.id" id="productid"/>
-                                
+                                <input type="hidden" value="@item.Product.id" id="productid" />
+
                                 <a href="" id="removecart">Remove</a>
 
                             </div>
                         </div>
                     </td>
                     <td>@item.Size</td>
-                    <td>(@item.Product.discount*100) %</td>
+
+                    <td>@(item.Product.discount * 100) %</td>
                     <td><input type="number" value="@item.Quantity"></td>
-                    <td>@string.Format("{0:#,0}", (item.Product.discount * item.Quantity))</td>
+                    @(Total_Price += (int)(item.Product.pro_price * item.Quantity - item.Product.pro_price * item.Quantity *item.Product.discount));
+                    <td> @string.Format("{0:#,0}", item.Product.pro_price * item.Quantity - item.Product.pro_price * item.Quantity * item.Product.discount) vnđ</td>
                 </tr>
             }
         }
-            else
-            {
-                <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng!</p>
-            }
+        else
+        {
+            <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng!</p>
+        }
 
 
         @*<tr>
@@ -127,19 +107,39 @@
         <table>
             <tr>
                 <td>Subtotal</td>
-                <td>$200.00</td>
-            </tr>
-            <tr>
-                <td>Tax</td>
-                <td>$35.00</td>
-            </tr>
-            <tr>
-                <td>Total</td>
-                <td>$230.00</td>
+                <td>@string.Format("{0:#,0}", @Total_Price) vnđ</td>
             </tr>
         </table>
     </div>
+    <div class="card-body border-top">
+        <a href=@Url.Action("Index", "ThanhToan") class="btn btn-primary float-md-right">Thanh toán<i class="fa fa-chevron-right"></i></a>
 
+    </div>
+    <script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = $("#productid").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#product-"+model.Id).remove();
+                },
+                error: function () {
+                    alert("Lỗi xóa mặt hàng trong giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+    </script>
 </div>
 
 

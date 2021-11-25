@@ -1,0 +1,66 @@
+﻿@model List<Website1.Models.products>
+@{
+    ViewBag.Title = "ProductCategory";
+    Layout = "~/Views/Shared/layout.cshtml";
+    
+}
+<div class="small-container">
+    <div class="box categories">
+        <h2>Danh mục <span></span></h2>
+        <div class="box categories">
+            <h2>Categories <span></span></h2>
+            <div class="box-content">
+                <ul>
+                    <li><a href="#">Category 1</a></li>
+                    <li><a href="#">Category 2</a></li>
+                    <li><a href="#">Category 3</a></li>
+                    <li><a href="#">Category 4</a></li>
+                    <li><a href="#">Category 5</a></li>
+                    <li><a href="#">Category 6</a></li>
+              
+                    <li><a href="#">Category 12</a></li>
+                    <li class="last"><a href="#">Category 13</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row row-2">
+        <h2>Tất cả sản phẩm</h2>
+
+
+        @*<select>
+                <option>Sorted by popularity</option>
+                <option>Sorted by rating</option>
+                <option>Sorted by sale</option>
+            </select>*@
+    </div>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-4">
+                <a href="~/SanPham/ChiTietSanPham?id=@item.id">
+                    <img src="~/assets/images/@item.pro_avatar" alt="">
+                </a>
+                <a href="~/SanPham/ChiTietSanPham?id=@item.id">
+                    <h4>@item.pro_name</h4>
+                </a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>@string.Format("{0:#,0}", item.pro_price) vnđ</p>
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+

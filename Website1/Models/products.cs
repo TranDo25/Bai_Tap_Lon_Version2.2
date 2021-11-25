@@ -26,17 +26,17 @@ namespace Website1.Models
         public Nullable<int> pro_category_id { get; set; }
         public Nullable<int> pro_price { get; set; }
         public Nullable<int> pro_brand_id { get; set; }
-        public Nullable<int> pro_size_L { get; set; }
-        public Nullable<int> pro_size_M { get; set; }
-        public Nullable<int> pro_size_S { get; set; }
         public Nullable<double> discount { get; set; }
         public Nullable<int> pro_quantity { get; set; }
         public string pro_description { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
-        public string image { get; set; }
         public Nullable<double> final_price { get; set; }
         public string pro_avatar { get; set; }
+        public Nullable<int> pro_active { get; set; }
+        public Nullable<int> size_L { get; set; }
+        public Nullable<int> size_M { get; set; }
+        public Nullable<int> size_S { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orders> orders { get; set; }

@@ -10,7 +10,7 @@ namespace Website1.Controllers
     public class TimKiemController : Controller
     {
         // GET: TimKiem
-        Bai_Tap_Lon_2Entities3 db = new Bai_Tap_Lon_2Entities3();
+        Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
         [HttpGet]
         public ActionResult KQTimKiem(string TuKhoa, int ? page)
         {

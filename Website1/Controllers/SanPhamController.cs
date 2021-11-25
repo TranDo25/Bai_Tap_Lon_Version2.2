@@ -10,11 +10,10 @@ namespace Website1.Controllers
     public class SanPhamController : Controller
     {
         // GET: SanPham
-       
-       private Bai_Tap_Lon_2Entities3 db = new Bai_Tap_Lon_2Entities3();
+        Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
         public ActionResult DanhSachSanPham(int? page, string sortOrder)
         {
-            Bai_Tap_Lon_2Entities3 db = new Bai_Tap_Lon_2Entities3();
+            Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
             //lấy ra danh sách sản phẩm
             //List<product> ketQua = db.products.ToList();
             //thực hiện chức năng phân trang

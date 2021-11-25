@@ -28,11 +28,11 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="c_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="c_avatar" Type="nvarchar" MaxLength="50" />
     <Property Name="c_total_product" Type="int" />
     <Property Name="c_brand_id" Type="int" />
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
+    <Property Name="c_author_id" Type="int" />
   </EntityType>
   <EntityType Name="contacts">
     <Key>
@@ -85,17 +85,17 @@
     <Property Name="pro_category_id" Type="int" />
     <Property Name="pro_price" Type="int" />
     <Property Name="pro_brand_id" Type="int" />
-    <Property Name="pro_size_L" Type="int" />
-    <Property Name="pro_size_M" Type="int" />
-    <Property Name="pro_size_S" Type="int" />
     <Property Name="discount" Type="float" />
     <Property Name="pro_quantity" Type="int" />
     <Property Name="pro_description" Type="nvarchar(max)" />
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
-    <Property Name="image" Type="text" />
     <Property Name="final_price" Type="float" />
     <Property Name="pro_avatar" Type="nvarchar" MaxLength="50" />
+    <Property Name="pro_active" Type="int" />
+    <Property Name="size_L" Type="int" />
+    <Property Name="size_M" Type="int" />
+    <Property Name="size_S" Type="int" />
   </EntityType>
   <EntityType Name="sizes">
     <Key>
@@ -138,9 +138,10 @@
     <Property Name="password" Type="varchar" MaxLength="191" />
     <Property Name="name" Type="varchar" MaxLength="191" />
     <Property Name="email" Type="varchar" MaxLength="191" Nullable="false" />
-    <Property Name="address" Type="varchar" MaxLength="191" />
     <Property Name="created_at" Type="smalldatetime" />
     <Property Name="updated_at" Type="smalldatetime" />
+    <Property Name="total_pay" Type="float" />
+    <Property Name="address" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK__orders__or_produ__44FF419A">
     <End Role="products" Type="Self.products" Multiplicity="0..1" />

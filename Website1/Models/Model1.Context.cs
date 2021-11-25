@@ -13,10 +13,10 @@ namespace Website1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Bai_Tap_Lon_2Entities3 : DbContext
+    public partial class Bai_Tap_Lon_2Entities4 : DbContext
     {
-        public Bai_Tap_Lon_2Entities3()
-            : base("name=Bai_Tap_Lon_2Entities3")
+        public Bai_Tap_Lon_2Entities4()
+            : base("name=Bai_Tap_Lon_2Entities4")
         {
         }
     

@@ -28,11 +28,11 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="c_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="c_avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="c_total_product" Type="Int32" />
     <Property Name="c_brand_id" Type="Int32" />
     <Property Name="created_at" Type="DateTime" Precision="0" />
     <Property Name="updated_at" Type="DateTime" Precision="0" />
+    <Property Name="c_author_id" Type="Int32" />
   </EntityType>
   <EntityType Name="contacts">
     <Key>
@@ -87,17 +87,17 @@
     <Property Name="pro_category_id" Type="Int32" />
     <Property Name="pro_price" Type="Int32" />
     <Property Name="pro_brand_id" Type="Int32" />
-    <Property Name="pro_size_L" Type="Int32" />
-    <Property Name="pro_size_M" Type="Int32" />
-    <Property Name="pro_size_S" Type="Int32" />
     <Property Name="discount" Type="Double" />
     <Property Name="pro_quantity" Type="Int32" />
     <Property Name="pro_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="created_at" Type="DateTime" Precision="0" />
     <Property Name="updated_at" Type="DateTime" Precision="0" />
-    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="final_price" Type="Double" />
     <Property Name="pro_avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pro_active" Type="Int32" />
+    <Property Name="size_L" Type="Int32" />
+    <Property Name="size_M" Type="Int32" />
+    <Property Name="size_S" Type="Int32" />
     <NavigationProperty Name="orders" Relationship="Self.FK__orders__or_produ__44FF419A" FromRole="products" ToRole="orders" />
   </EntityType>
   <EntityType Name="sizes">
@@ -142,9 +142,10 @@
     <Property Name="password" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
     <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="address" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
     <Property Name="created_at" Type="DateTime" Precision="0" />
     <Property Name="updated_at" Type="DateTime" Precision="0" />
+    <Property Name="total_pay" Type="Double" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK__orders__or_produ__44FF419A">
     <End Role="products" Type="Self.products" Multiplicity="0..1" />
@@ -170,7 +171,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Bai_Tap_Lon_2Entities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Bai_Tap_Lon_2Entities4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="admins" EntityType="Self.admins" />
     <EntitySet Name="brands" EntityType="Self.brands" />
     <EntitySet Name="categories" EntityType="Self.categories" />

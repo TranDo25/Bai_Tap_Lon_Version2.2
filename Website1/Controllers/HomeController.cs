@@ -14,12 +14,11 @@ namespace Website1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
+            var DS_SanPham = db.products.ToList();
+            return View(DS_SanPham.ToList());
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
+        
         //GET: register
         public ActionResult Register()
         {
@@ -29,7 +28,7 @@ namespace Website1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(users _user)
         {
-            Bai_Tap_Lon_2Entities3 db = new Bai_Tap_Lon_2Entities3();
+            Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
             if (ModelState.IsValid)
             {
                 var check = db.users.FirstOrDefault(s => s.email == _user.email);
@@ -67,15 +66,43 @@ namespace Website1.Controllers
             }
             return byte2String;
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public ActionResult Register(user user)
-        //{
-        //    return View();
-        //}
         public ActionResult Products()
         {
             return View();
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password)
+        {
+            Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
+            if (ModelState.IsValid)
+            {
+                var f_password = GetMD5(password);
+                var data = db.users.Where(s => s.email.Equals(email) && s.password.Equals(f_password)).ToList();
+                if (data.Count() > 0)
+                {
+                    //add session
+                    Session["FullName"] = data.FirstOrDefault().name;
+                    Session["Email"] = data.FirstOrDefault().email;
+                    Session["idUser"] = data.FirstOrDefault().id;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Login failed";
+                    return RedirectToAction("Login");
+                }
+            }
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
         }
     }
 }

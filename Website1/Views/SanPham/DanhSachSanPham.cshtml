@@ -5,10 +5,14 @@
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/layout.cshtml";
-    var DS_SanPham = new Website1.Models.SanPhamModel().DanhSach();
 }
 <div class="small-container">
-
+    <div class="box categories">
+        <h2>Danh mục <span></span></h2>
+        <div class="box-content">
+            
+        </div>
+    </div>
     <div class="row row-2">
         <h2>Tất cả sản phẩm</h2>
         <th>
@@ -17,55 +21,55 @@
         <th>
             @Html.ActionLink("sắp xếp theo tên", "DanhSachSanPham", new { sortOrder = ViewBag.TenSortParm })
         </th>
-       
-    <select>
-        @*<option>
-            <th>
-                @Html.ActionLink("sắp xếp theo giá", "DanhSachSanPham", new { sortOrder = ViewBag.GiaSortParm })
-            </th>
-        </option>
 
-        <option>
-            <th>
-                @Html.ActionLink("sắp xếp theo mã", "DanhSachSanPham", new { sortOrder = ViewBag.MaSortParm })
-                </th>
-        </option>*@
+        <select>
+            @*<option>
+                    <th>
+                        @Html.ActionLink("sắp xếp theo giá", "DanhSachSanPham", new { sortOrder = ViewBag.GiaSortParm })
+                    </th>
+                </option>
 
-        <option>Sorted by popularity</option>
-        <option>Sorted by rating</option>
-        <option>Sorted by sale</option>
-    </select>
+                <option>
+                    <th>
+                        @Html.ActionLink("sắp xếp theo mã", "DanhSachSanPham", new { sortOrder = ViewBag.MaSortParm })
+                        </th>
+                </option>*@
+
+            <option>Sorted by popularity</option>
+            <option>Sorted by rating</option>
+            <option>Sorted by sale</option>
+        </select>
     </div>
-   
-        <div class="row">
 
-            @foreach (var item in Model)
-            {
+    <div class="row">
 
-                <div class="col-4">
-                    <a href="~/SanPham/ChiTietSanPham?id=@item.id">
-                        <img src="~/assets/images/@item.image" alt="">
-                    </a>
-                    <a href="~/SanPham/ChiTietSanPham?id=@item.id">
-                        <h4>@item.pro_name</h4>
-                    </a>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>@string.Format("{0:#,0}",item.pro_price) vnđ</p>
+        @foreach (var item in Model)
+        {
+
+            <div class="col-4">
+                <a href="~/SanPham/ChiTietSanPham?id=@item.id">
+                    <img src="~/assets/images/@item.pro_avatar" alt="">
+                </a>
+                <a href="~/SanPham/ChiTietSanPham?id=@item.id">
+                    <h4>@item.pro_name</h4>
+                </a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
+                <p>@string.Format("{0:#,0}", item.pro_price) vnđ</p>
+            </div>
 
 
-            }
-        </div>
-    
-        <div class="page-btn">
-            Trang @(Model.PageCount<Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
-            <span>@Html.PagedListPager(Model, page => Url.Action("DanhSachSanPham", new { page = page }))</span>
-            @*<span>&#8594</span>*@
-        </div>
+        }
+    </div>
+
+    <div class="page-btn">
+        Trang @(Model.PageCount<Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
+        <span>@Html.PagedListPager(Model, page => Url.Action("DanhSachSanPham", new { page = page }))</span>
+       
+    </div>
 </div>

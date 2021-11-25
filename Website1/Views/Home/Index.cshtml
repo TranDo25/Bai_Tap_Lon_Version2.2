@@ -2,7 +2,7 @@
 @{ ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/layout.cshtml"; }
 
-
+@model List<Website1.Models.products>
 
 
 <div class="header">
@@ -10,9 +10,9 @@
 
         <div class="row">
             <div class="col-2">
-                <h1>Give Your Workout <br> A New Style!</h1>
-                <p>Success isn't about greatness. It's about consistency. Consistent <br> hard work gains success. Greatness will come.</p>
-                <a href="" class="btn">Explore Now &#8594;</a>
+                <h1>RED STORE<br> A New Style!</h1>
+                <p>Cung cấp các sản phẩm giày thể thao và các đồ liên quan đến thể thao <br> Chất lượng đi đôi với giá tiền</p>
+                <a href="~/SanPham/DanhSachSanPham" class="btn">Explore Now &#8594;</a>
             </div>
             <div class="col-2">
                 <img src="~/assets/images/image1.png">
@@ -35,155 +35,39 @@
 <div class="small-container">
     <h2 class="title">Featured Products</h2>
     <div class="row">
-        <div class="col-4">
-            <a href="product-details.html"><img src="~/assets/images/product-1.jpg" alt=""></a>
-            <a href="product-details.html"><h4>Red Printed Tshirt</h4></a>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-2.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-3.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-4.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
+        @foreach (var item in Model.Take(4))
+        {
+<div class="col-4">
+    <a href="~/SanPham/ChiTietSanPham?id=@item.id"><img src="~/assets/images/@item.pro_avatar" alt=""></a>
+    <a href="~/SanPham/ChiTietSanPham?id=@item.id"><h4>@item.pro_name</h4></a>
+    <div class="rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-o"></i>
+    </div>
+    <p>@string.Format("{0:#,0}", item.pro_price) vnđ</p>
+</div>}
+
     </div>
     <h2 class="title">Latest Products</h2>
+
     <div class="row">
-        <div class="col-4">
-            <img src="~/assets/images/product-5.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-6.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-7.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-8.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
+        @foreach (var item in Model.OrderByDescending(n => n.updated_at).Take(8))
+        {
+<div class="col-4">
+    <a href="~/SanPham/ChiTietSanPham?id=@item.id"><img src="~/assets/images/@item.pro_avatar" alt=""></a>
+    <a href="~/SanPham/ChiTietSanPham?id=@item.id"><h4>@item.pro_name</h4></a>
+    <div class="rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-o"></i>
     </div>
-    <div class="row">
-        <div class="col-4">
-            <img src="~/assets/images/product-9.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-10.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-11.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="~/assets/images/product-12.jpg" alt="">
-            <h4>Red Printed Tshirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
+    <p>@string.Format("{0:#,0}", item.pro_price) vnđ</p>
+</div>}
     </div>
 </div>
 
@@ -192,13 +76,19 @@
     <div class="small-container">
         <div class="row">
             <div class="col-2">
-                <img src="~/assets/images/exclusive.png" class="offer-img">
+                <img src="~/assets/images/@Model.OrderByDescending(n => n.updated_at).ElementAt(0).pro_avatar" class="offer-img">
             </div>
             <div class="col-2">
-                <p>Exclusively Available on RedStore</p>
-                <h1>Smart Band 4</h1>
-                <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everyting is clear as can be.</small>
-                <a href="" class="btn">Buy Now &#8594;</a>
+                <p>Sản phẩm mới nhất</p>
+                <h1>@Model.OrderByDescending(n => n.updated_at).ElementAt(0).pro_name</h1>
+                <small><i class="fa fa-quote-left"></i>@Model.OrderByDescending(n => n.updated_at).ElementAt(0).pro_description</small>
+                <div class="form-group col-md">
+                    <a href="~/SanPham/ChiTietSanPham?id=@Model.OrderByDescending(n => n.updated_at).ElementAt(0).id" id="addtocart" class="btn  btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="text" h>Thêm vào giỏ hàng</span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>
@@ -210,7 +100,7 @@
         <div class="row">
             <div class="col-3">
                 <i class="fa fa-quote-left"></i>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                <p>Shop cung cấp giày đẹp và chất lượng. Giá cả hợp lý. Tôi đã mua ở đây nhiều lần</p>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -223,7 +113,7 @@
             </div>
             <div class="col-3">
                 <i class="fa fa-quote-left"></i>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                <p>Tôi đã mua hàng tại shop. Giày rất bền không bị bung chỉ, đặc biệt đi rất nhẹ và êm</p>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -236,7 +126,7 @@
             </div>
             <div class="col-3">
                 <i class="fa fa-quote-left"></i>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                <p>Các mẫu giày rất hợp với ý thích của tôi</p>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>

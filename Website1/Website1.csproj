@@ -488,6 +488,7 @@
     <Content Include="assets\images\gallery-2.jpg" />
     <Content Include="assets\images\gallery-3.jpg" />
     <Content Include="assets\images\gallery-4.jpg" />
+    <Content Include="assets\images\giaythuongdinh.jpg" />
     <Content Include="assets\images\image1.png" />
     <Content Include="assets\images\img-credit.txt" />
     <Content Include="assets\images\logo-coca-cola.png" />
@@ -514,6 +515,7 @@
     <Content Include="assets\images\PUMA FUTURE 19.3 NETFIT.jpg" />
     <Content Include="assets\images\PUMA _EVO POWER_4.3_TT - ĐEN-XB.jpg" />
     <Content Include="assets\images\pureboost21.jpg" />
+    <Content Include="assets\images\quanaobongda.jpg" />
     <Content Include="assets\images\responsesuper2_0.jpg" />
     <Content Include="assets\images\runfalcon2_0.jpg" />
     <Content Include="assets\images\search.png" />
@@ -570,6 +572,7 @@
     <Compile Include="Areas\Admin\Controllers\AddAndEditAndRemoveController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
@@ -594,6 +597,7 @@
     <Compile Include="Models\images.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListCategory.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -672,7 +676,6 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\layout.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.esm.min.js.map" />
@@ -694,6 +697,9 @@
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Category\ProductCategory.cshtml" />
+    <Content Include="Views\Shared\CategoryLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

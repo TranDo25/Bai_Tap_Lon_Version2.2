@@ -10,7 +10,7 @@ namespace Website1.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        private Bai_Tap_Lon_2Entities3 db = new Bai_Tap_Lon_2Entities3();
+        private Bai_Tap_Lon_2Entities4 db = new Bai_Tap_Lon_2Entities4();
         public ActionResult Index()
         {
      

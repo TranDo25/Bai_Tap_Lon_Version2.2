@@ -19,8 +19,9 @@ namespace Website1.Models
         public string password { get; set; }
         public string name { get; set; }
         public string email { get; set; }
-        public string address { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
+        public Nullable<double> total_pay { get; set; }
+        public string address { get; set; }
     }
 }

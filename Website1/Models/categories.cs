@@ -16,10 +16,10 @@ namespace Website1.Models
     {
         public int id { get; set; }
         public string c_name { get; set; }
-        public string c_avatar { get; set; }
         public Nullable<int> c_total_product { get; set; }
         public Nullable<int> c_brand_id { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
+        public Nullable<int> c_author_id { get; set; }
     }
 }
